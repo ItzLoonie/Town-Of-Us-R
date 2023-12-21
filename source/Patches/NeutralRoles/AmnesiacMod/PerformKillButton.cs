@@ -13,6 +13,7 @@ using TownOfUs.ImpostorRoles.BomberMod;
 using TownOfUs.CrewmateRoles.AurialMod;
 using TownOfUs.Patches.ScreenEffects;
 
+
 namespace TownOfUs.NeutralRoles.AmnesiacMod
 {
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
