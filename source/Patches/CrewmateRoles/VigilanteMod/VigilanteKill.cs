@@ -11,6 +11,9 @@ using TownOfUs.Extensions;
 using TownOfUs.NeutralRoles.DoomsayerMod;
 using TownOfUs.CrewmateRoles.SwapperMod;
 using TownOfUs.Patches;
+using Reactor.Utilities.Extensions;
+using TownOfUs.CrewmateRoles.ImitatorMod;
+using TownOfUs.CrewmateRoles.DeputyMod;
 
 namespace TownOfUs.CrewmateRoles.VigilanteMod
 {
@@ -88,6 +91,48 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
 
                 player.myTasks.Insert(0, importantTextTask);
 
+                if (player.Is(RoleEnum.Swapper))
+                {
+                    var swapper = Role.GetRole<Swapper>(PlayerControl.LocalPlayer);
+                    var buttons = Role.GetRole<Swapper>(player).Buttons;
+                    foreach (var button in buttons)
+                    {
+                        if (button != null)
+                        {
+                            button.SetActive(false);
+                            button.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
+                        }
+                    }
+                    swapper.ListOfActives.Clear();
+                    swapper.Buttons.Clear();
+                    SwapVotes.Swap1 = null;
+                    SwapVotes.Swap2 = null;
+                    Utils.Rpc(CustomRPC.SetSwaps, sbyte.MaxValue, sbyte.MaxValue);
+                }
+
+                if (player.Is(RoleEnum.Imitator))
+                {
+                    var imitator = Role.GetRole<Imitator>(PlayerControl.LocalPlayer);
+                    var buttons = Role.GetRole<Imitator>(player).Buttons;
+                    foreach (var button in buttons)
+                    {
+                        if (button != null)
+                        {
+                            button.SetActive(false);
+                            button.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
+                        }
+                    }
+                    imitator.ListOfActives.Clear();
+                    imitator.Buttons.Clear();
+                    SetImitate.Imitate = null;
+                }
+
+                if (player.Is(RoleEnum.Vigilante))
+                {
+                    var retributionist = Role.GetRole<Vigilante>(PlayerControl.LocalPlayer);
+                    ShowHideButtonsVigi.HideButtonsVigi(retributionist);
+                }
+
                 if (player.Is(AbilityEnum.Assassin))
                 {
                     var assassin = Ability.GetAbility<Assassin>(PlayerControl.LocalPlayer);
@@ -98,6 +143,38 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
                 {
                     var doomsayer = Role.GetRole<Doomsayer>(PlayerControl.LocalPlayer);
                     ShowHideButtonsDoom.HideButtonsDoom(doomsayer);
+                    ShowHideButtonsDoom.HideTextDoom(doomsayer);
+                }
+
+                if (player.Is(RoleEnum.Deputy))
+                {
+                    var dep = Role.GetRole<Deputy>(PlayerControl.LocalPlayer);
+                    RemoveButtons.HideButtons(dep);
+                }
+
+                if (player.Is(RoleEnum.Politician))
+                {
+                    var politician = Role.GetRole<Politician>(PlayerControl.LocalPlayer);
+                    politician.RevealButton.Destroy();
+                }
+
+                if (player.Is(RoleEnum.Mayor))
+                {
+                    var mayor = Role.GetRole<Mayor>(PlayerControl.LocalPlayer);
+                    mayor.RevealButton.Destroy();
+                }
+
+                if (player.Is(RoleEnum.Jailor))
+                {
+                    var jailor = Role.GetRole<Jailor>(PlayerControl.LocalPlayer);
+                    jailor.ExecuteButton.Destroy();
+                    jailor.UsesText.Destroy();
+                }
+
+                if (player.Is(RoleEnum.Hypnotist))
+                {
+                    var hypnotist = Role.GetRole<Hypnotist>(PlayerControl.LocalPlayer);
+                    hypnotist.HysteriaButton.Destroy();
                 }
             }
             player.Die(DeathReason.Kill, false);
@@ -164,20 +241,45 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
                 ShowHideButtonsDoom.HideTarget(doom, voteArea.TargetPlayerId);
             }
 
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Deputy) && !PlayerControl.LocalPlayer.Data.IsDead)
+            {
+                var dep = Role.GetRole<Deputy>(PlayerControl.LocalPlayer);
+                if (dep.Buttons.Count > 0 && dep.Buttons[voteArea.TargetPlayerId] != null)
+                {
+                    dep.Buttons[voteArea.TargetPlayerId].SetActive(false);
+                    dep.Buttons[voteArea.TargetPlayerId].GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
+                }
+            }
+
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Swapper) && !PlayerControl.LocalPlayer.Data.IsDead)
             {
                 var swapper = Role.GetRole<Swapper>(PlayerControl.LocalPlayer);
-                var button = swapper.Buttons[voteArea.TargetPlayerId];
-                if (button.GetComponent<SpriteRenderer>().sprite == TownOfUs.SwapperSwitch)
+                var index = int.MaxValue;
+                for (var i = 0; i < swapper.ListOfActives.Count; i++)
                 {
-                    swapper.ListOfActives[voteArea.TargetPlayerId] = false;
-                    if (SwapVotes.Swap1 == voteArea) SwapVotes.Swap1 = null;
-                    if (SwapVotes.Swap2 == voteArea) SwapVotes.Swap2 = null;
-                    Utils.Rpc(CustomRPC.SetSwaps, sbyte.MaxValue, sbyte.MaxValue);
+                    if (swapper.ListOfActives[i].Item1 == voteArea.TargetPlayerId)
+                    {
+                        index = i;
+                        break;
+                    }
                 }
-                button.SetActive(false);
-                button.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
-                swapper.Buttons[voteArea.TargetPlayerId] = null;
+                if (index != int.MaxValue)
+                {
+                    var button = swapper.Buttons[index];
+                    if (button != null)
+                    {
+                        if (button.GetComponent<SpriteRenderer>().sprite == TownOfUs.SwapperSwitch)
+                        {
+                            swapper.ListOfActives[index] = (swapper.ListOfActives[index].Item1, false);
+                            if (SwapVotes.Swap1 == voteArea) SwapVotes.Swap1 = null;
+                            if (SwapVotes.Swap2 == voteArea) SwapVotes.Swap2 = null;
+                            Utils.Rpc(CustomRPC.SetSwaps, sbyte.MaxValue, sbyte.MaxValue);
+                        }
+                        button.SetActive(false);
+                        button.GetComponent<PassiveButton>().OnClick = new Button.ButtonClickedEvent();
+                        swapper.Buttons[index] = null;
+                    }
+                }
             }
 
             foreach (var playerVoteArea in meetingHud.playerStates)
@@ -192,6 +294,15 @@ namespace TownOfUs.CrewmateRoles.VigilanteMod
                 }
                 if (!voteAreaPlayer.AmOwner) continue;
                 meetingHud.ClearVote();
+            }
+
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Imitator) && !PlayerControl.LocalPlayer.Data.IsDead)
+            {
+                var imitatorRole = Role.GetRole<Imitator>(PlayerControl.LocalPlayer);
+                if (MeetingHud.Instance.state != MeetingHud.VoteStates.Results && MeetingHud.Instance.state != MeetingHud.VoteStates.Proceeding)
+                {
+                    AddButtonImitator.GenButton(imitatorRole, voteArea, true);
+                }
             }
 
             if (AmongUsClient.Instance.AmHost) meetingHud.CheckForEndVoting();

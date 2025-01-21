@@ -60,18 +60,24 @@ namespace TownOfUs
         TurnPestilence,
         Disperse,
         Escape,
-        Revive,
-        Convert,
-        ChameleonSwoop,
         Imitate,
         StartImitate,
+        Plant,
         Bite,
         Reveal,
         Prosecute,
         Confess,
         Bless,
         Camouflage,
-        SnitchCultistReveal,
+        HunterStalk,
+        AbilityTrigger,
+        Elect,
+        Fortify,
+        Hypnotise,
+        Jail,
+        Collect,
+        Retribution,
+        Camp,
 
         BypassKill,
         BypassMultiKill,
@@ -91,6 +97,8 @@ namespace TownOfUs
         RemoveAllBodies,
         CheckMurder,
 
-        SubmergedFixOxygen
+        SubmergedFixOxygen,
+
+        ContentAddition
     }
 }

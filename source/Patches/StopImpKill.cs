@@ -2,7 +2,10 @@ using HarmonyLib;
 using TownOfUs.Extensions;
 using AmongUs.GameOptions;
 using TownOfUs.Modifiers.UnderdogMod;
+using TownOfUs.CrewmateRoles.SheriffMod;
 using TownOfUs.Roles;
+using Reactor.Utilities;
+using static TownOfUs.Roles.Glitch;
 
 namespace TownOfUs
 {
@@ -22,6 +25,14 @@ namespace TownOfUs
                 if (!target.inVent) Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, target);
                 return false;
             }
+            HUDKill.ImpKillTarget(__instance);
+            target = __instance.currentTarget;
+            if (target == null) return false;
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Warlock) && PlayerControl.LocalPlayer.IsHacked())
+            {
+                Coroutines.Start(AbilityCoroutine.Hack(PlayerControl.LocalPlayer));
+                return false;
+            }
             var interact = Utils.Interact(PlayerControl.LocalPlayer, target, true);
             if (interact[4] == true) return false;
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Warlock))
@@ -37,7 +48,13 @@ namespace TownOfUs
             }
             else if (interact[0] == true)
             {
-                if (PlayerControl.LocalPlayer.Is(ModifierEnum.Underdog))
+                if (PlayerControl.LocalPlayer.Is(RoleEnum.Scavenger))
+                {
+                    var scav = Role.GetRole<Scavenger>(PlayerControl.LocalPlayer);
+                    if (scav.Target == target) PlayerControl.LocalPlayer.SetKillTimer(CustomGameOptions.ScavengeCorrectKillCooldown);
+                    else PlayerControl.LocalPlayer.SetKillTimer(GameOptionsManager.Instance.currentNormalGameOptions.KillCooldown * CustomGameOptions.ScavengeIncorrectKillCooldown);
+                }
+                else if (PlayerControl.LocalPlayer.Is(ModifierEnum.Underdog))
                 {
                     var lowerKC = GameOptionsManager.Instance.currentNormalGameOptions.KillCooldown - CustomGameOptions.UnderdogKillBonus;
                     var normalKC = GameOptionsManager.Instance.currentNormalGameOptions.KillCooldown;

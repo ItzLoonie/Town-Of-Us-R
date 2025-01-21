@@ -19,14 +19,14 @@ namespace TownOfUs.Roles
             Faction = Faction.NeutralEvil;
         }
 
-        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__36 __instance)
+        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__38 __instance)
         {
             var jestTeam = new List<PlayerControl>();
             jestTeam.Add(PlayerControl.LocalPlayer);
             __instance.teamToShow = jestTeam;
         }
 
-        internal override bool NeutralWin(LogicGameFlowNormal __instance)
+        internal override bool GameEnd(LogicGameFlowNormal __instance)
         {
             if (!VotedOut || !Player.Data.IsDead && !Player.Data.Disconnected) return true;
             if (!CustomGameOptions.NeutralEvilWinEndsGame) return true;

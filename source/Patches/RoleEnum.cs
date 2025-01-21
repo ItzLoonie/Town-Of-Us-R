@@ -36,10 +36,16 @@ namespace TownOfUs
         Imitator,
         Doomsayer,
         Vampire,
-        VampireHunter,
         Prosecutor,
         Oracle,
         Aurial,
+        Hunter,
+        Politician,
+        Warden,
+        Jailor,
+        SoulCollector,
+        Lookout,
+        Deputy,
 
         Miner,
         Swooper,
@@ -53,16 +59,11 @@ namespace TownOfUs
         Bomber,
         Warlock,
         Venerer,
+        Hypnotist,
+        Scavenger,
 
         Crewmate,
         Impostor,
-
-        Necromancer,
-        Whisperer,
-        CultistSeer,
-        CultistMystic,
-        Chameleon,
-        CultistSnitch,
 
         None
     }
@@ -84,7 +85,11 @@ namespace TownOfUs
         Multitasker,
         DoubleShot,
         Underdog,
-        Frosty
+        Frosty,
+        SixthSense,
+        Shy,
+        Mini,
+        Saboteur
     }
 
     public enum AbilityEnum

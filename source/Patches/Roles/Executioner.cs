@@ -23,14 +23,14 @@ namespace TownOfUs.Roles
             Scale = 1.4f;
         }
 
-        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__36 __instance)
+        protected override void IntroPrefix(IntroCutscene._ShowTeam_d__38 __instance)
         {
             var exeTeam = new List<PlayerControl>();
             exeTeam.Add(PlayerControl.LocalPlayer);
             __instance.teamToShow = exeTeam;
         }
 
-        internal override bool NeutralWin(LogicGameFlowNormal __instance)
+        internal override bool GameEnd(LogicGameFlowNormal __instance)
         {
             if (Player.Data.IsDead) return true;
             if (!CustomGameOptions.NeutralEvilWinEndsGame) return true;

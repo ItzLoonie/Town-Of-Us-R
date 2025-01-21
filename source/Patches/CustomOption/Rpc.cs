@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Hazel;
 using Reactor.Utilities;
+using UnityEngine;
 
 namespace TownOfUs.CustomOption
 {
@@ -35,7 +36,7 @@ namespace TownOfUs.CustomOption
 
         public static void ReceiveRpc(MessageReader reader)
         {
-            PluginSingleton<TownOfUs>.Instance.Log.LogInfo("Options received:");
+            PluginSingleton<TownOfUs>.Instance.Log.LogInfo("Options received");
             while (reader.BytesRemaining > 0)
             {
                 var id = reader.ReadInt32();
@@ -50,7 +51,16 @@ namespace TownOfUs.CustomOption
 
                 customOption?.Set(value);
 
-                PluginSingleton<TownOfUs>.Instance.Log.LogInfo($"{customOption?.Name} : {customOption}:");
+                var panels = GameObject.FindObjectsOfType<ViewSettingsInfoPanel>();
+                foreach (var panel in panels) {
+                    if (panel.titleText.text == customOption.Name && customOption.Type != CustomOptionType.Header)
+                    {
+                        panel.SetInfo(StringNames.ImpostorsCategory, customOption.ToString(), 61);
+                        panel.titleText.text = customOption.Name;
+                    }
+                }
+
+                //PluginSingleton<TownOfUs>.Instance.Log.LogInfo($"{customOption?.Name} : {customOption}:");
             }
         }
     }

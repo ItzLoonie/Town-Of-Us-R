@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 using Reactor.Networking.Extensions;
 using System;
 using TownOfUs.Patches;
-using UnityEngine.LowLevel;
+using TownOfUs.Modifiers.ShyMod;
 
 namespace TownOfUs.Roles.Modifiers
 {
@@ -88,6 +88,13 @@ namespace TownOfUs.Roles.Modifiers
                 PlayerControl player = Utils.PlayerById(key);
                 player.transform.position = value;
                 if (PlayerControl.LocalPlayer == player) PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(value);
+                if (player.Is(ModifierEnum.Shy))
+                {
+                    var shy = GetModifier<Shy>(player);
+                    shy.Opacity = 1f;
+                    HudManagerUpdate.SetVisiblity(player, shy.Opacity);
+                    shy.Moving = true;
+                }
             }
 
             if (PlayerControl.LocalPlayer.walkingToVent)
