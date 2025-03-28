@@ -99,6 +99,7 @@ namespace TownOfUs
         public static int ScavengerOn => (int)Generate.ScavengerOn.Get();
         public static int DeputyOn => (int)Generate.DeputyOn.Get();
         public static int JuggernautOn => (int)Generate.JuggernautOn.Get();
+        public static int VultureOn => (int)Generate.VultureOn.Get();
         public static int TorchOn => (int)Generate.TorchOn.Get();
         public static int DiseasedOn => (int)Generate.DiseasedOn.Get();
         public static int FlashOn => (int)Generate.FlashOn.Get();
@@ -394,5 +395,7 @@ namespace TownOfUs
         public static float EatCd => Generate.EatCooldown.Get();
         public static bool VultureVent => Generate.VultureCanVent.Get();
         public static bool VultureArrows => Generate.VultureHasArrows.Get();
+        public static int BodiesToWin => (int)Generate.VultureBodies.Get();
+
     }
 }

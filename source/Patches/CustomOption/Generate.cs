@@ -51,6 +51,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption JesterOn;
         public static CustomNumberOption PhantomOn;
         public static CustomNumberOption SoulCollectorOn;
+        public static CustomNumberOption VultureOn;
 
         public static CustomHeaderOption NeutralKillingRoles;
         public static CustomNumberOption ArsonistOn;
@@ -513,6 +514,7 @@ namespace TownOfUs.CustomOption
 
         public static CustomHeaderOption Vulture;
         public static CustomNumberOption EatCooldown;
+        public static CustomNumberOption VultureBodies;
         public static CustomToggleOption VultureCanVent;
         public static CustomToggleOption VultureHasArrows;
 
@@ -608,6 +610,8 @@ namespace TownOfUs.CustomOption
             PhantomOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#662962FF>Phantom</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             SoulCollectorOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#99FFCCFF>Soul Collector</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            VultureOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#556B2FFF>Vulture</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             NeutralKillingRoles = new CustomHeaderOption(num++, MultiMenu.neutral, "Neutral Killing Roles");
@@ -1200,6 +1204,15 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, MultiMenu.neutral, "Passively Collect A Soul Each Round", true);
             SoulsToWin =
                  new CustomNumberOption(num++, MultiMenu.neutral, "Amount Of Souls Required To Win", 5, 1, 15, 1);
+
+            Vulture =
+                new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#556B2FFF>Vulture</color>");
+            EatCooldown =
+                new CustomNumberOption(num++, MultiMenu.neutral, "Eat Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
+            VultureHasArrows =
+                new CustomToggleOption(num++, MultiMenu.neutral, "Vulture Gets Arrows Pointing To Dead Bodies", false);
+            VultureBodies =
+                 new CustomNumberOption(num++, MultiMenu.neutral, "Amount Of Bodies Required To Win", 4, 1, 15, 1);
 
             Arsonist = new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#FF4D00FF>Arsonist</color>");
             DouseCooldown =

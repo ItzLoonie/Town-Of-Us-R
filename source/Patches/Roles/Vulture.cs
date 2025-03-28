@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
-// using TownOfUs.NeutralRoles.VultureMod;
+using TownOfUs.NeutralRoles.VultureMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Vulure : Role
+    public class Vulture : Role
     {
         private KillButton _eatButton;
         public PlayerControl ClosestPlayer;
         public DateTime LastEaten { get; set; }
         public bool EatenBodies = false;
         public int BodiesEaten = 0;
+        public Dictionary<byte, ArrowBehaviour> BodyArrows = new Dictionary<byte, ArrowBehaviour>();
 
         public Vulture(PlayerControl player) : base(player)
         {
@@ -54,6 +56,16 @@ namespace TownOfUs.Roles
             var vultTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             vultTeam.Add(PlayerControl.LocalPlayer);
             __instance.teamToShow = vultTeam;
+        }
+
+        public void DestroyArrow(byte targetPlayerId)
+        {
+            var arrow = BodyArrows.FirstOrDefault(x => x.Key == targetPlayerId);
+            if (arrow.Value != null)
+                UnityEngine.Object.Destroy(arrow.Value);
+            if (arrow.Value.gameObject != null)
+                UnityEngine.Object.Destroy(arrow.Value.gameObject);
+            BodyArrows.Remove(arrow.Key);
         }
 
         internal override bool GameEnd(LogicGameFlowNormal __instance)
