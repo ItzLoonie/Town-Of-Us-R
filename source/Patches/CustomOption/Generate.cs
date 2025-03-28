@@ -511,6 +511,11 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Saboteur;
         public static CustomNumberOption ReducedSaboCooldown;
 
+        public static CustomHeaderOption Vulture;
+        public static CustomNumberOption EatCooldown;
+        public static CustomToggleOption VultureCanVent;
+        public static CustomToggleOption VultureHasArrows;
+
         public static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
         private static Func<object, string> MultiplierFormat { get; } = value => $"{value:0.0#}x";

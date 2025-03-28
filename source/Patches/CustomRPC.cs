@@ -78,6 +78,7 @@ namespace TownOfUs
         Collect,
         Retribution,
         Camp,
+        Eat,
 
         BypassKill,
         BypassMultiKill,

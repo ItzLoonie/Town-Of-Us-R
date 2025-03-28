@@ -391,5 +391,8 @@ namespace TownOfUs
         public static float ScavengeCorrectKillCooldown => (float)Generate.ScavengeCorrectKillCooldown.Get();
         public static float ScavengeIncorrectKillCooldown => (float)Generate.ScavengeIncorrectKillCooldown.Get();
         public static float ReducedSaboCd => Generate.ReducedSaboCooldown.Get();
+        public static float EatCd => Generate.EatCooldown.Get();
+        public static bool VultureVent => Generate.VultureCanVent.Get();
+        public static bool VultureArrows => Generate.VultureHasArrows.Get();
     }
 }

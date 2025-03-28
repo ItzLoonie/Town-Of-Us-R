@@ -212,6 +212,7 @@ namespace TownOfUs
             WatchSprite = CreateSprite("TownOfUs.Resources.Watch.png");
             CampSprite = CreateSprite("TownOfUs.Resources.Camp.png");
             ShootSprite = CreateSprite("TownOfUs.Resources.Shoot.png");
+            EatSprite = CreateSprite("TownOfUs.Resources.Eat.png");
 
             ToUBanner = CreateSprite("TownOfUs.Resources.TownOfUsBanner.png");
             UpdateTOUButton = CreateSprite("TownOfUs.Resources.UpdateToUButton.png");
