@@ -207,6 +207,11 @@ namespace TownOfUs.Roles
                 var scRole = (SoulCollector)sc;
                 if (scRole.CollectedSouls && CustomGameOptions.NeutralEvilWinEndsGame) return;
             }
+            foreach (var vult in GetRoles(RoleEnum.Vulture))
+            {
+                var vultRole = (Vulture)vult;
+                if (vultRole.EatenBodies && CustomGameOptions.NeutralEvilWinEndsGame) return;
+            }
 
             VampireWins = true;
 

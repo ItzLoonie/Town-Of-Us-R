@@ -43,6 +43,7 @@ namespace TownOfUs
         private static Sprite Collect => TownOfUs.CollectSprite;
         private static Sprite Watch => TownOfUs.WatchSprite;
         private static Sprite Camp => TownOfUs.CampSprite;
+        private static Sprite Eat => TownOfUs.EatSprite;
 
         private static Sprite Kill;
 
@@ -172,6 +173,11 @@ namespace TownOfUs
             else if (PlayerControl.LocalPlayer.Is(RoleEnum.Deputy))
             {
                 __instance.KillButton.graphic.sprite = Camp;
+                flag = true;
+            }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Vulture))
+            {
+                __instance.KillButton.graphic.sprite = Eat;
                 flag = true;
             }
             else

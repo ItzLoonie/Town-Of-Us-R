@@ -1,15 +1,16 @@
 using System.Collections;
+using TownOfUs.ImpostorRoles.VultureMod;
 using TownOfUs.Roles;
 using UnityEngine;
 
-namespace TownOfUs.ImpostorRoles.VultureMod
+namespace TownOfUs.NeutralRoles.VultureMod
 {
     public class Coroutine
     {
         private static readonly int BodyColor = Shader.PropertyToID("_BodyColor");
         private static readonly int BackColor = Shader.PropertyToID("_BackColor");
 
-        public static IEnumerator CleanCoroutine(DeadBody body, Vulture role)
+        public static IEnumerator EatCoroutine(DeadBody body, Vulture role)
         {
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Lookout))
             {

@@ -108,6 +108,7 @@ namespace TownOfUs
         public static Sprite WatchSprite;
         public static Sprite CampSprite;
         public static Sprite ShootSprite;
+        public static Sprite EatSprite;
 
         public static Sprite ToUBanner;
         public static Sprite UpdateTOUButton;

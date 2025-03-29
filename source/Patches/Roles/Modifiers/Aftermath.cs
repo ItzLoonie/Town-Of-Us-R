@@ -100,6 +100,12 @@ namespace TownOfUs.Roles.Modifiers
 
                 Coroutines.Start(ImpostorRoles.JanitorMod.Coroutine.CleanCoroutine(db, janitor));
             }
+            else if (role is Vulture vulture)
+            {
+                Utils.Rpc(CustomRPC.Eat, PlayerControl.LocalPlayer.PlayerId, db.ParentId);
+
+                Coroutines.Start(NeutralRoles.VultureMod.Coroutine.EatCoroutine(db, vulture));
+            }
             else if (role is Miner miner)
             {
                 var hits = Physics2D.OverlapBoxAll(PlayerControl.LocalPlayer.transform.position, miner.VentSize, 0);

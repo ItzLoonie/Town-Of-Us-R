@@ -108,6 +108,7 @@ namespace TownOfUs.Patches {
                     else if (role.Value == RoleEnum.Lookout) { playerRole += "<color=#" + Patches.Colors.Lookout.ToHtmlStringRGBA() + ">Lookout</color> > "; }
                     else if (role.Value == RoleEnum.Scavenger) { playerRole += "<color=#" + Patches.Colors.Impostor.ToHtmlStringRGBA() + ">Scavenger</color> > "; }
                     else if (role.Value == RoleEnum.Deputy) { playerRole += "<color=#" + Patches.Colors.Deputy.ToHtmlStringRGBA() + ">Deputy</color> > "; }
+                    else if (role.Value == RoleEnum.Vulture) { playerRole += "<color=#" + Patches.Colors.Vulture.ToHtmlStringRGBA() + ">Vulture</color> > "; }
                 }
                 playerRole = playerRole.Remove(playerRole.Length - 3);
 
@@ -211,6 +212,15 @@ namespace TownOfUs.Patches {
                             playerName += $"<color=#EFBF04>{playerControl.Data.PlayerName}</color>";
                         }
                     }
+                    if (playerControl.Is(RoleEnum.Vulture))
+                    {
+                        var vult = Role.GetRole<Vulture>(playerControl);
+                        if (vult.EatenBodies)
+                        {
+                            AdditionalTempData.otherWinners.Add(new AdditionalTempData.Winners() { PlayerName = vult.Player.Data.PlayerName, Role = RoleEnum.Vulture });
+                            playerName += $"<color=#EFBF04>{playerControl.Data.PlayerName}</color>";
+                        }
+                    }
                 }
                 if (playerName == "") playerName += playerControl.Data.PlayerName;
 
@@ -253,6 +263,7 @@ namespace TownOfUs.Patches {
                     else if (data.Role == RoleEnum.Jester) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Jester.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                     else if (data.Role == RoleEnum.Phantom) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Phantom.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                     else if (data.Role == RoleEnum.SoulCollector) roleSummaryText.AppendLine("<color=#" + Patches.Colors.SoulCollector.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
+                    else if (data.Role == RoleEnum.Vulture) roleSummaryText.AppendLine("<color=#" + Patches.Colors.Vulture.ToHtmlStringRGBA() + $">{data.PlayerName}</color>");
                 }
             }
 

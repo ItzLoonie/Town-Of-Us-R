@@ -517,6 +517,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption VultureBodies;
         public static CustomToggleOption VultureCanVent;
         public static CustomToggleOption VultureHasArrows;
+        public static CustomNumberOption VultureArrowDelay;
 
         public static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
@@ -1213,6 +1214,10 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, MultiMenu.neutral, "Vulture Gets Arrows Pointing To Dead Bodies", false);
             VultureBodies =
                  new CustomNumberOption(num++, MultiMenu.neutral, "Amount Of Bodies Required To Win", 4, 1, 15, 1);
+            VultureArrowDelay =
+                new CustomNumberOption(num++, MultiMenu.neutral, "Time After Death Arrow Appears", 5f, 0f, 15f, 1f, CooldownFormat);
+            VultureCanVent =
+                new CustomToggleOption(num++, MultiMenu.neutral, "Vulture Can Vent", false);
 
             Arsonist = new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#FF4D00FF>Arsonist</color>");
             DouseCooldown =

@@ -396,6 +396,7 @@ namespace TownOfUs
         public static bool VultureVent => Generate.VultureCanVent.Get();
         public static bool VultureArrows => Generate.VultureHasArrows.Get();
         public static int BodiesToWin => (int)Generate.VultureBodies.Get();
+        public static float VultureArrowDelay => Generate.VultureArrowDelay.Get();
 
     }
 }

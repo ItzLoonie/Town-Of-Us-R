@@ -38,7 +38,7 @@ namespace TownOfUs.ImpostorRoles.VultureMod
 
                 Utils.Rpc(CustomRPC.Eat, PlayerControl.LocalPlayer.PlayerId, playerId);
 
-                Coroutines.Start(Coroutine.CleanCoroutine(role.CurrentTarget, role));
+                Coroutines.Start(NeutralRoles.VultureMod.Coroutine.EatCoroutine(role.CurrentTarget, role));
                 return false;
             }
 

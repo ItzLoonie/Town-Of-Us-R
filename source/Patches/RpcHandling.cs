@@ -12,6 +12,7 @@ using TownOfUs.CrewmateRoles.SwapperMod;
 using TownOfUs.CrewmateRoles.VigilanteMod;
 using TownOfUs.CrewmateRoles.JailorMod;
 using TownOfUs.NeutralRoles.DoomsayerMod;
+using TownOfUs.NeutralRoles.VultureMod;
 using TownOfUs.CustomOption;
 using TownOfUs.Extensions;
 using TownOfUs.Modifiers.AssassinMod;
@@ -26,6 +27,7 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
+using CoroutineB = TownOfUs.NeutralRoles.VultureMod.Coroutine;
 using Object = UnityEngine.Object;
 using PerformKillButton = TownOfUs.NeutralRoles.AmnesiacMod.PerformKillButton;
 using Random = UnityEngine.Random;
@@ -834,6 +836,17 @@ namespace TownOfUs
                         foreach (var body in deadBodies)
                             if (body.ParentId == readByte)
                                 Coroutines.Start(Coroutine.CleanCoroutine(body, janitorRole));
+
+                        break;
+                    case CustomRPC.Eat:
+                        readByte1 = reader.ReadByte();
+                        var vulturePlayer = Utils.PlayerById(readByte1);
+                        var vultureRole = Role.GetRole<Vulture>(vulturePlayer);
+                        readByte = reader.ReadByte();
+                        var bodies = Object.FindObjectsOfType<DeadBody>();
+                        foreach (var body in bodies)
+                            if (body.ParentId == readByte)
+                                Coroutines.Start(NeutralRoles.VultureMod.Coroutine.EatCoroutine(body, vultureRole));
 
                         break;
                     case CustomRPC.EngineerFix:
@@ -1656,6 +1669,9 @@ namespace TownOfUs
 
                 if (CustomGameOptions.SoulCollectorOn > 0)
                     NeutralEvilRoles.Add((typeof(SoulCollector), CustomGameOptions.SoulCollectorOn, true));
+
+                if (CustomGameOptions.VultureOn > 0)
+                    NeutralEvilRoles.Add((typeof(Vulture), CustomGameOptions.VultureOn, true));
 
                 if (CustomGameOptions.SurvivorOn > 0)
                     NeutralBenignRoles.Add((typeof(Survivor), CustomGameOptions.SurvivorOn, false || CustomGameOptions.UniqueRoles));
