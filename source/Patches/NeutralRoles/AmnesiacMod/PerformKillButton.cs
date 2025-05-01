@@ -130,6 +130,7 @@ namespace TownOfUs.NeutralRoles.AmnesiacMod
                     break;
 
                 case RoleEnum.Jester:
+                case RoleEnum.Vulture:
                 case RoleEnum.Executioner:
                 case RoleEnum.Arsonist:
                 case RoleEnum.Amnesiac:

@@ -111,6 +111,7 @@ namespace TownOfUs
         public static int PlumberOn => (int)Generate.PlumberOn.Get();
         public static int EclipsalOn => (int)Generate.EclipsalOn.Get();
         public static int MercenaryOn => (int)Generate.MercenaryOn.Get();
+        public static int VultureOn => (int)Generate.VultureOn.Get();
         public static int ClericOn => (int)Generate.ClericOn.Get();
         public static int TorchOn => (int)Generate.TorchOn.Get();
         public static int DiseasedOn => (int)Generate.DiseasedOn.Get();
@@ -416,5 +417,10 @@ namespace TownOfUs
         public static bool JesterScatter => Generate.JesterScatter.Get();
         public static float JestScatterTimer => Generate.JestScatterTimer.Get();
         public static float DetectDuration => Generate.DetectDuration.Get();
+        public static bool VultureVent => Generate.VultureCanVent.Get();
+        public static bool VultureArrows => Generate.VultureHasArrows.Get();
+        public static int VultureBodies => (int)Generate.VultureBodies.Get();
+        public static float VultureArrowDelay => Generate.VultureArrowDelay.Get();
+        public static bool VultureWinEndsGame => Generate.VultureWinEndsGame.Get();
     }
 }

@@ -49,6 +49,7 @@ namespace TownOfUs
         Plumber,
         Mercenary,
         Cleric,
+        Vulture,
 
         Miner,
         Swooper,

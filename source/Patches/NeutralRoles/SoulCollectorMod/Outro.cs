@@ -14,6 +14,7 @@ namespace TownOfUs.NeutralRoles.SoulCollectorMod
             if (Role.GetRoles(RoleEnum.Jester).Any(x => ((Jester)x).VotedOut) && CustomGameOptions.JesterWin == ExecutionerMod.WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Executioner).Any(x => ((Executioner)x).TargetVotedOut) && CustomGameOptions.ExecutionerWin == ExecutionerMod.WinEndsGame.EndsGame) return;
             if (Role.GetRoles(RoleEnum.Doomsayer).Any(x => ((Doomsayer)x).WonByGuessing) && CustomGameOptions.DoomsayerWinEndsGame) return;
+            if (Role.GetRoles(RoleEnum.Vulture).Any(x => ((Vulture)x).EatenBodies) && CustomGameOptions.VultureWinEndsGame) return;
             var role = Role.AllRoles.FirstOrDefault(x =>
                 x.RoleType == RoleEnum.SoulCollector && ((SoulCollector)x).SCWins);
             if (role == null) return;

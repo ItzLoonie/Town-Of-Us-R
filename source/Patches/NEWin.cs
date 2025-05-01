@@ -36,6 +36,12 @@ namespace TownOfUs.Patches
                 if (CustomGameOptions.PhantomWinEndsGame) return;
                 else neWin = true;
             }
+            var vultRole = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Vulture && ((Vulture)x).EatenBodies && ((Vulture)x).Player == PlayerControl.LocalPlayer);
+            if (vultRole != null)
+            {
+                if (CustomGameOptions.VultureWinEndsGame) return;
+                else neWin = true;
+            }
             if (neWin)
             {
                 __instance.WinText.text = "</color><color=#008DFFFF>Victory";

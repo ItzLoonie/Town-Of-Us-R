@@ -192,6 +192,11 @@ namespace TownOfUs
                 __instance.KillButton.graphic.sprite = Barrier;
                 flag = true;
             }
+            else if (PlayerControl.LocalPlayer.Is(RoleEnum.Vulture))
+            {
+                __instance.KillButton.graphic.sprite = Eat;
+                flag = true;
+            }
             else
             {
                 __instance.KillButton.graphic.sprite = Kill;
