@@ -49,6 +49,7 @@ namespace TownOfUs
         Plumber,
         Mercenary,
         Cleric,
+        TavernKeeper,
 
         Miner,
         Swooper,
@@ -65,6 +66,7 @@ namespace TownOfUs
         Hypnotist,
         Scavenger,
         Eclipsal,
+        Bootlegger,
 
         Crewmate,
         Impostor,

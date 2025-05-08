@@ -354,6 +354,16 @@ namespace TownOfUs.Patches
                         AddRoleMessage(RoleEnum.Lookout);
                         return false;
                     }
+                        else if (chatText.ToLower().StartsWith("/tav") || chatText.ToLower().StartsWith("/ tav"))
+                    {
+                        AddRoleMessage(RoleEnum.TavernKeeper);
+                        return false;
+                    }
+                    else if (chatText.ToLower().StartsWith("/boot") || chatText.ToLower().StartsWith("/ boot"))
+                    {
+                        AddRoleMessage(RoleEnum.Bootlegger);
+                        return false;
+                    }
                     else if (chatText.ToLower().StartsWith("/giant") || chatText.ToLower().StartsWith("/ giant"))
                     {
                         AddModifierMessage(ModifierEnum.Giant);
@@ -654,6 +664,10 @@ namespace TownOfUs.Patches
                     PlayerControl.LocalPlayer, "The Mercenary is a neutral benign who can guard other players. Guarded players who are interacted with gain currency for the Mercenary to use to bribe players. The Mercenary wins if any bribed player lives and wins.");
                 if (role == RoleEnum.Cleric) HudManager.Instance.Chat.AddChat(
                     PlayerControl.LocalPlayer, "The Cleric is a crewmate who can barrier other players temporarily or cleanse players. Barriered players cannot be killed. Cleansing a player removes all negative effects (e.g. blackmail, douse).");
+                if (role == RoleEnum.TavernKeeper) HudManager.Instance.Chat.AddChat(
+                    PlayerControl.LocalPlayer, "The Tavern Keeper is a crewmate who can roleblock other players temporarily. Roleblocked players cannot perform their abilities.");
+                if (role == RoleEnum.Bootlegger) HudManager.Instance.Chat.AddChat(
+                    PlayerControl.LocalPlayer, "The Bootlegger is an impostor who can roleblock other players temporarily. Roleblocked players cannot perform their abilities.");
             }
 
             public static void AddModifierMessage(ModifierEnum modifier)
