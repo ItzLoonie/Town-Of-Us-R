@@ -9,7 +9,7 @@ namespace TownOfUs.Roles
             Name = "Engineer";
             ImpostorText = () => "Maintain Important Systems On The Ship";
             TaskText = () => "Vent around and fix sabotages";
-            Color = Patches.Color.Crewmate;
+            Color = Patches.Colors.Crewmate;
             RoleType = RoleEnum.Engineer;
             AddToRoleHistory(RoleType);
             UsesLeft = CustomGameOptions.MaxFixes;

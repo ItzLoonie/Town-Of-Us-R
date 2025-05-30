@@ -18,7 +18,7 @@ namespace TownOfUs.Roles
             Name = "Politician";
             ImpostorText = () => "Campaign To Become The Mayor!";
             TaskText = () => "Spread your campaign to become the Mayor!";
-            Color = Patches.Color.Crewmate;
+            Color = Patches.Colors.Crewmate;
             RoleType = RoleEnum.Politician;
             AddToRoleHistory(RoleType);
             CanCampaign = true;

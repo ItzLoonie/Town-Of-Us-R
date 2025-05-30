@@ -30,9 +30,9 @@ namespace TownOfUs.Roles.Modifiers
             RemainingKills = CustomGameOptions.AssassinKills;
 
             // Adds all the roles that have a non-zero chance of being in the game.
-            if (CustomGameOptions.PoliticianOn > 0) ColorMapping.Add("Politician", Color.Crewmate);
-            if (CustomGameOptions.SheriffOn > 0) ColorMapping.Add("Sheriff", Color.Crewmate);
-            if (CustomGameOptions.EngineerOn > 0) ColorMapping.Add("Engineer", Color.Crewmate);
+            if (CustomGameOptions.PoliticianOn > 0) ColorMapping.Add("Politician", Colors.Crewmate);
+            if (CustomGameOptions.SheriffOn > 0) ColorMapping.Add("Sheriff", Colors.Crewmate);
+            if (CustomGameOptions.EngineerOn > 0) ColorMapping.Add("Engineer", Colors.Crewmate);
             if (CustomGameOptions.SwapperOn > 0) ColorMapping.Add("Swapper", Colors.Crewmate);
             if (CustomGameOptions.InvestigatorOn > 0) ColorMapping.Add("Investigator", Colors.Crewmate);
             if (CustomGameOptions.MedicOn > 0) ColorMapping.Add("Medic", Colors.Crewmate);
