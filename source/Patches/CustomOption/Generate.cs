@@ -635,7 +635,7 @@ namespace TownOfUs.CustomOption
             NeutralEvilRoles = new CustomHeaderOption(num++, MultiMenu.neutral, "Neutral Evil Roles");
             DoomsayerOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#00FF80FF>Doomsayer</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            ExecutionerOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#8C4005FF>Executioner</color>", 0f, 0f, 100f, 10f,
+            ExecutionerOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#949797FF>Executioner</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             JesterOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#FFBFCCFF>Jester</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -653,7 +653,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             SoulCollectorOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#99FFCCFF>Soul Collector</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            VampireOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#262626FF>Vampire</color>", 0f, 0f, 100f, 10f,
+            VampireOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#A22929FF>Vampire</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             WerewolfOn = new CustomNumberOption(num++, MultiMenu.neutral, "<color=#A86629FF>Werewolf</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -1236,7 +1236,7 @@ namespace TownOfUs.CustomOption
             DoomsayerWinEndsGame = new CustomToggleOption(num++, MultiMenu.neutral, "Doomsayer Win Ends Game", true);
 
             Executioner =
-                new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#8C4005FF>Executioner</color>");
+                new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#949797FF>Executioner</color>");
             OnTargetDead = new CustomStringOption(num++, MultiMenu.neutral, "Executioner Becomes On Target Dead",
                 new[] { "Crewmate", "Amnesiac", "Mercenary", "Survivor", "Jester" }, 4);
             ExecutionerButton =
@@ -1306,7 +1306,7 @@ namespace TownOfUs.CustomOption
             SCVent =
                 new CustomToggleOption(num++, MultiMenu.neutral, "Soul Collector Can Vent", false);
 
-            Vampire = new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#262626FF>Vampire</color>");
+            Vampire = new CustomHeaderOption(num++, MultiMenu.neutral, "<color=#A22929FF>Vampire</color>");
             BiteCooldown =
                 new CustomNumberOption(num++, MultiMenu.neutral, "Vampire Bite Cooldown", 25f, 10f, 60f, 2.5f, CooldownFormat);
             VampImpVision =
