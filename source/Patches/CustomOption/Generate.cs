@@ -709,7 +709,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             TaskmasterOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#669966FF>Taskmaster</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            TorchOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#8CFFFFFF>Torch</color>", 0f, 0f, 100f, 10f,
+            TorchOn = new CustomNumberOption(num++, MultiMenu.modifiers, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             GlobalModifiers = new CustomHeaderOption(num++, MultiMenu.modifiers, "Global Modifiers");
